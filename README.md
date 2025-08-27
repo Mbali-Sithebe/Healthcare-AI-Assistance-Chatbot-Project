@@ -16,7 +16,7 @@ Hounors Project (DIGA4002A)
 
 4. Step 4 – Configure Environment Variables
 
-- bPINECONE_API_KEY="your_pinecone_api_key_here"
+- PINECONE_API_KEY="your_pinecone_api_key_here"
 - OPENAI_API_KEY="your_openai_api_key_here"
 
 5. Step 5 – Store Embeddings
@@ -28,7 +28,8 @@ Hounors Project (DIGA4002A)
 - Finally, start the chatbot server: python app.py
 - hen open your browser and navigate to: http://localhost:5000
 
-TECH STACK USED: 
+TECH STACK USED:
+
 - Python
 - LangChain
 - Flask
@@ -36,11 +37,12 @@ TECH STACK USED:
 - Pinecone
 
 Optional: AWS Deployment (CI/CD)
-- AWS_ACCESS_KEY_ID  
-- AWS_SECRET_ACCESS_KEY  
-- AWS_DEFAULT_REGION  
-- ECR_REPO  
-- PINECONE_API_KEY  
-- OPENAI_API_KEY  
+
+- AWS_ACCESS_KEY_ID
+- AWS_SECRET_ACCESS_KEY
+- AWS_DEFAULT_REGION
+- ECR_REPO
+- PINECONE_API_KEY
+- OPENAI_API_KEY
 
 LOCATE FILE: cd "C:\Users\mbale\github\Healthcare-AI-Assistance-Chatbot-Project"
