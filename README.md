@@ -2,31 +2,31 @@
 
 Hounors Project (DIGA4002A)
 
-1. Step 1 – Clone the Repository:
+1. Step 1 – Cloneing the Repository:
    git clone https://github.com/mbale/Healthcare-AI-Assistance-Chatbot-Project.git
 
-2.Step 2 – Set Up Python Environment
+2.Step 2 – Setting Up Python Environment
 
 - conda create -n medibot python=3.12 -y
 - conda activate medibot
 
-3. Step 3 – Install Dependencies
+3. Step 3 – Installing the Dependencies
 
 - pip install -r requirements.txt
 
-4. Step 4 – Configure Environment Variables
+4. Step 4 – Configure Environment Variables Which Are:
 
 - PINECONE_API_KEY="your_pinecone_api_key_here"
 - OPENAI_API_KEY="your_openai_api_key_here"
 
-5. Step 5 – Store Embeddings
+5. Step 5 – Storing the Embeddings
 
 - python store_index.py
 
-6. Step 6 – Run the Chatbot
+6. Step 6 – Running the Chatbot
 
-- Finally, start the chatbot server: python app.py
-- hen open your browser and navigate to: http://localhost:5000
+- Lastly, start the chatbot server: python app.py
+- To locate the HTMML file open this browser and navigate to: http://localhost:5000
 
 TECH STACK USED:
 
