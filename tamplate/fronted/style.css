@@ -1,0 +1,485 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik+Doodle+Shadow&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  background: linear-gradient(112.1deg, #0c5355 11.4%, #12383a 70.2%);
+}
+
+/******************************* Header ********************************/
+
+#health-disclaimer {
+  background-color: #faf8f1;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: #212121;
+  padding: 1rem;
+  font-size: 0.8rem;
+}
+
+/****************************** Nav Menu ********************************/
+
+#navigation-bar nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 2.2rem;
+}
+
+#menu-container ul.menu {
+  display: flex;
+  list-style: none;
+  gap: 8rem;
+  justify-content: center;
+  flex: 1;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+#menu-container ul.menu li.menu-item a {
+  text-decoration: none;
+  color: #faf8f1;
+}
+
+#menu-container ul.menu li.menu-item.active {
+  color: #81dee9;
+}
+
+#menu-container ul.menu li.menu-item a:hover {
+  color: #81dee9;
+}
+
+#navigation-bar nav .logo {
+  text-decoration: none;
+  color: #faf8f1;
+  margin-left: 8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+}
+
+#navigation-bar nav .logo:hover {
+  color: #81dee9;
+  text-decoration: none;
+  transform: scale(1.05);
+}
+
+#navigation-bar nav #start-consultation {
+  margin-right: 8rem;
+  font-size: 1rem;
+  color: #212121;
+  background-color: #70c5ce;
+  border: none;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-weight: 500;
+}
+
+#navigation-bar nav #start-consultation:hover {
+  background-color: #faf8f1;
+}
+
+/*************************** Home Information ***************************/
+
+#home {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 8rem;
+  margin-top: 0rem;
+}
+
+#text-information {
+  flex: 1;
+  max-width: 46%;
+  margin-top: -1rem;
+}
+
+#heading-1 h1 {
+  font-family: "Rubik Doodle Shadow", cursive;
+  font-size: 3rem;
+  color: #faf8f1;
+}
+
+#heading-2 h1 {
+  font-family: "Poppins", sans-serif;
+  font-size: 2.8rem;
+  color: #faf8f1;
+}
+
+#text p {
+  margin-top: 1.5rem;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.5;
+  font-size: 1rem;
+  color: #faf8f1;
+}
+
+#btns button {
+  margin-top: 2.5rem;
+  font-size: 1.1rem;
+  color: #212121;
+  background-color: #70c5ce;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  font-weight: 500;
+}
+
+#btns button:hover {
+  background-color: #fffffd;
+}
+
+/********************************** Bubble Buttons Image *********************************/
+
+#image-container {
+  position: relative;
+  flex: 1;
+  max-width: 45%;
+}
+
+#image-container img {
+  margin-top: -1.8rem;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+}
+
+.bubble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 19px 16px;
+  border: 2px solid #f5efe6;
+  border-radius: 8px;
+  background: rgba(13, 81, 83, 0.6);
+  color: #f5efe6;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 2;
+  backdrop-filter: blur(4px);
+}
+
+.bubble i {
+  font-size: 1.1rem;
+}
+
+.bubble:hover {
+  transform: scale(1.05);
+}
+
+.top-right {
+  top: -3rem;
+  right: -3rem;
+}
+
+.bottom-right {
+  bottom: -1.1rem;
+  right: -3rem;
+}
+
+.bottom-left {
+  bottom: -1.4rem;
+  left: -8rem;
+}
+
+/********************************** About Page ******************************/
+
+#about {
+  padding: 6rem 2rem;
+  background-color: #effaff;
+  color: #282f49;
+  text-align: center;
+}
+
+#about h2 {
+  font-size: 2rem;
+  margin-bottom: 4rem;
+  color: #282f49;
+}
+
+.about-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.about-card {
+  flex: 1 1 280px;
+  max-width: 320px;
+  background: white;
+  border: 2px solid #282f49;
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.about-card h3 {
+  color: #485eb7;
+  font-size: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.about-card p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+}
+
+.about-card i {
+  font-size: 2rem;
+  color: #272e47;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/********************************** Consultation Room ******************************/
+
+#consultations {
+  background: #faf8f1;
+  padding: 3rem 8rem;
+  padding-bottom: 10rem;
+}
+
+#consultation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+#consultation h1 {
+  margin: 0;
+  color: #323c5c;
+  margin-bottom: 2.2rem;
+}
+
+#consultation img {
+  width: 45px;
+  height: auto;
+  vertical-align: middle;
+  position: relative;
+  top: -15px;
+}
+
+#chatBot {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  box-shadow: 0 4px 15px rgba(33, 32, 32, 0.1);
+}
+
+/******* 3 SECTIONS ******/
+
+#chatBot {
+  display: flex;
+  gap: 3rem;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: #0c5355;
+  border-radius: 1rem;
+}
+
+#consultation h1 {
+  font-weight: 600;
+}
+
+#chatBot aside {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+#chatBot aside h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #faf8f1;
+  font-weight: 550;
+}
+
+#info-box-1,
+#info-box-2,
+#info-box-3 {
+  background-color: #faf8f1;
+  border: 2px solid #282f49;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  min-height: 100px;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+#info-box-1 textarea {
+  width: 90%;
+  display: block;
+  margin: 1rem auto 0;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.3rem;
+  resize: vertical;
+}
+
+#chat-input {
+  width: 100%;
+  height: 120px;
+  resize: none;
+}
+
+#chatBot aside button {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #70c5ce;
+  color: #212121;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  border: 2px solid #212121;
+}
+
+#chatBot aside button:hover {
+  background-color: #faf8f1;
+  color: #212121;
+}
+
+#info-box-2 ul,
+#info-box-3 ul {
+  display: inline-block;
+  text-align: left;
+  margin: 1rem auto;
+  padding: 0;
+  list-style-position: inside;
+}
+
+#info-box-2 li,
+#info-box-3 li {
+  margin: 0.5rem 0;
+}
+
+/**************************************** FEATURES ************************************/
+
+#features {
+  padding: 6rem 8rem;
+  padding-bottom: 10rem;
+  background: linear-gradient(112.1deg, #0c5355 11.4%, #12383a 70.2%);
+}
+
+#features h1 {
+  text-align: center;
+  color: #faf8f1;
+  font-weight: 600;
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+}
+
+#features .features-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 3rem 2rem;
+  flex-wrap: nowrap;
+}
+
+.feature-box {
+  flex: 1;
+  background-color: #f7efec;
+  padding: 2rem;
+  border-radius: 0.8rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.feature-box .title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature-box .title i {
+  font-size: 2rem;
+  color: #212121;
+  margin-bottom: 0.5rem;
+}
+
+.feature-box .title h2 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #212121;
+  margin: 0;
+  margin-bottom: 1.1rem;
+}
+
+.feature-box p {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: #212121;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/**************************************** FOOTER ************************************/
+footer {
+  background-color: #faf8f1;
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  color: #212121;
+  padding: 1rem;
+  font-size: 0.9rem;
+}
+
+.back-to-home {
+  display: none; 
+  position: fixed; 
+  bottom: 3rem; 
+  right: 3rem; 
+  background: none; 
+  border: none;
+  color: #0d5153;
+  font-size: 2rem; 
+  cursor: pointer;
+  z-index: 999; 
+  transition: transform 0.3s ease;
+}
+
+.back-to-home:hover {
+  transform: translateY(-5px);
+}
