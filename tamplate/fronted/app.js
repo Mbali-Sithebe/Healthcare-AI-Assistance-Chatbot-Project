@@ -69,6 +69,30 @@ topBtn.addEventListener("click", () => {
   });
 });
 
+// ==================== Submit Symptoms ==================== //
+// form.addEventListener("submit", (event) => {
+//   console.log("Submit clicked", symptoms);
+//   event.preventDefault(); // Prevent page reload
+
+//   const symptoms = chatInput.value.trim();
+
+//   if (symptoms) {
+//     console.log("Symptoms submitted:", symptoms);
+//     alert("Your symptoms have been submitted for analysis!");
+//     // Later: connect to backend with fetch() or axios
+//   } else {
+//     alert("Please describe your symptoms before submitting.");
+//   }
+// });
+
+// downloadBtn.addEventListener("click", () => {
+//   // Replace this URL with your backend endpoint
+//   const pdfDownloadURL = "http://localhost:5000/api/download-report";
+
+//   // Trigger the backend file download directly
+//   window.location.href = pdfDownloadURL;
+// });
+
 // ===============================
 // 4. Chat Form Submission
 // ===============================
@@ -77,24 +101,33 @@ const chatInput = document.getElementById("chat-input");
 const infoBox2 = document.getElementById("info-box-2");
 
 form.addEventListener("submit", async (e) => {
+  console.log("Submit clicked", symptoms);
   e.preventDefault(); // Prevent page reload
   const userMessage = chatInput.value.trim();
-  if (!userMessage) return;
-
+  //if (!userMessage) return;
+  console.log("Submit here", symptoms);
   // Show user message while waiting for response
   infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: Processing...</p>`;
-
+  console.log("try startt", symptoms);
   try {
-    // Send message to Flask backend
-    const response = await fetch("http://127.0.0.1:8080/get", {
+    console.log("try start", symptoms);
+    //Send message to Flask backend
+    const response = await fetch("http://127.0.0.1:5000/api/search", {
       method: "POST",
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        "Content-Type": "application/json",
       },
-      body: `msg=${encodeURIComponent(userMessage)}`,
+      body: JSON.stringify({ Message: "userMessage" }), //`msg=${encodeURIComponent(userMessage)}`,
     });
+    // const response = await fetch("http://127.0.0.1:5000/", {
+    //   method: "GET",
+    //   headers: {
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //   },
+    // });
 
     const answer = await response.text();
+    console.log("try end", answer);
     infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: ${answer}</p>`;
   } catch (error) {
     infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>Error: Could not connect to server</p>`;

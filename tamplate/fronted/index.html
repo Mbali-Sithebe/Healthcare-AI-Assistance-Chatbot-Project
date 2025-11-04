@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Metadata Information -->
+    <!-- ==================== Metadata ==================== -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-
     <meta
       name="keywords"
       content="HTML, CSS, JavaScript, Healthcare, AI, LLMs"
     />
-    <meta name="description" content="Healthcare AI Assistance Website" />
+    <meta name="description" content="AI Healthcare Assistance Website" />
     <meta name="author" content="Mbali Sithebe" />
 
     <title>AI Healthcare Assistance</title>
 
+    <!-- ==================== Favicon ==================== -->
     <link
       rel="icon"
       type="image/png"
       href="./images/FavIcon.png"
       sizes="32x32"
-      type="image/png"
     />
 
+    <!-- ==================== External Libraries ==================== -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 
     <link
@@ -33,41 +33,46 @@
       referrerpolicy="no-referrer"
     />
 
+    <!-- ==================== Custom Styles ==================== -->
     <link rel="stylesheet" href="../fronted/style.css" />
   </head>
+
   <body>
-    <!-- Warning Header -->
+    <!-- ==================== Header ==================== -->
     <header>
       <aside id="health-disclaimer">
         <p>
-          This is a university project, not WHO licensed. Please consult a
+          This is a university project — not WHO licensed. Please consult a
           healthcare professional if you feel unwell.
         </p>
       </aside>
     </header>
 
+    <!-- ==================== Main Content ==================== -->
     <main>
+      <!-- ===== Navigation Section ===== -->
       <section id="navigation-bar">
         <nav>
-          <!-- Logo on the left -->
+          <!-- Logo -->
           <a href="#home" class="logo">
             <i class="fa-solid fa-heart-pulse"></i> AI HealthCare
           </a>
 
-          <!-- Menu container for JS-generated menu -->
+          <!-- Dynamic Menu Placeholder -->
           <aside
             id="menu-container"
             role="navigation"
             aria-label="Main Menu"
           ></aside>
 
-          <!-- Button on the right -->
+          <!-- Right-side Button -->
           <button id="start-consultation">Project Research Work</button>
         </nav>
       </section>
 
+      <!-- ===== Home Section ===== -->
       <section id="home">
-        <!-- Text content -->
+        <!-- Textual Information -->
         <section id="text-information">
           <header id="heading-1">
             <h1>AI HealthCare</h1>
@@ -80,57 +85,60 @@
           <section id="text">
             <p>
               Experience personalized health support with our AI Healthcare
-              Chatbot, designed to assess your symptoms and recommend
-              treatments. Access reliable guidance for your health concerns
-              anytime, anywhere.
+              Chatbot. Assess your symptoms and receive AI-powered health
+              insights — anytime, anywhere.
             </p>
           </section>
 
           <section id="btns">
-            <button>Start your consultation</button>
+            <button>Start Your Consultation</button>
           </section>
         </section>
 
-        <!-- Image -->
+        <!-- Image & Bubbles -->
         <figure id="image-container">
           <img
             src="./images/AI Doctor 03-Enhancer-1.jpeg"
             alt="AI Doctor Illustration"
           />
 
-          <!-- Top-right bubble -->
-          <button class="bubble top-right">
+          <button class="bubble top-right" aria-label="24/7 Availability">
             <i class="fa-solid fa-user-doctor"></i>
             <span>24/7 Availability</span>
           </button>
 
-          <!-- Bottom-right bubble -->
-          <button class="bubble bottom-right">
+          <button
+            class="bubble bottom-right"
+            aria-label="Medicine Recommendation"
+          >
             <i class="fa-solid fa-prescription-bottle-medical"></i>
             <span>Medicine Recommendation</span>
           </button>
 
-          <!-- Bottom-left bubble -->
-          <button class="bubble bottom-left">
+          <button
+            class="bubble bottom-left"
+            aria-label="Fast Medical Diagnosis"
+          >
             <i class="fa-solid fa-stethoscope"></i>
             <span>Fast Medical Diagnosis</span>
           </button>
         </figure>
       </section>
 
+      <!-- ===== Consultation Chat Section ===== -->
       <section id="consultations">
-        <!-- Main consultation section -->
         <section id="consultation">
-          <img src="./images/stars-svgrepo-com (4).svg" />
+          <img src="./images/stars-svgrepo-com (4).svg" alt="Stars Icon" />
           <h1>Consultation Chat Room</h1>
-          <img src="./images/stars-svgrepo-com (4).svg" />
+          <img src="./images/stars-svgrepo-com (4).svg" alt="Stars Icon" />
         </section>
 
+        <!-- ChatBot Interface -->
         <section id="chatBot">
-          <!-- Symptoms input -->
+          <!-- Symptoms Input -->
           <aside id="symptoms">
             <h2>Describe Your Symptoms</h2>
-            <!-- heading on top, not inside the box -->
+
             <form id="symptoms-form">
               <div id="info-box-1">
                 <p>Please describe what you are experiencing...</p>
@@ -140,11 +148,10 @@
                   rows="4"
                 ></textarea>
               </div>
+              <button type="submit" id="send-btn">Submit Your Response</button>
             </form>
-            <!-- Submit Button -->
-            <button type="submit" id="send-btn">Submit Your Responce</button>
 
-            <!-- Suggestions-->
+            <!-- Suggestions -->
             <div id="suggestions">
               <button type="button">Headache</button>
               <button type="button">Fever</button>
@@ -152,7 +159,7 @@
             </div>
           </aside>
 
-          <!-- AI analysis output -->
+          <!-- AI Analysis -->
           <aside id="analysis">
             <h2>AI ChatBot Analysis</h2>
             <div id="info-box-2">
@@ -166,7 +173,7 @@
             </div>
           </aside>
 
-          <!-- Recommendations / Medications -->
+          <!-- Recommendations -->
           <aside id="meds">
             <h2>Recommendations</h2>
             <div id="info-box-3">
@@ -176,35 +183,34 @@
                 <li>Acetaminophen</li>
               </ul>
             </div>
+
             <div id="downloadBtn">
-              <button>Download Your Report</button>
+              <button id="download-report">Download Your Report</button>
             </div>
           </aside>
-
-          <!-- Back to Home Button -->
-          <button class="back-to-home" aria-label="Back to top button">
-            <i class="fa-solid fa-circle-up"></i>
-          </button>
         </section>
+
+        <!-- Back to Home Button -->
+        <button class="back-to-home" aria-label="Back to top button">
+          <i class="fa-solid fa-circle-up"></i>
+        </button>
       </section>
 
-      <!-- Last Section -->
+      <!-- ===== Features Section ===== -->
       <section id="features">
         <h1>The Key Features</h1>
 
-        <!-- Container to hold all three boxes side by side -->
+        <!-- Features Container -->
         <div class="features-container">
           <aside class="feature-box">
             <div class="title">
               <i class="fa-solid fa-brain"></i>
-              <h2>AI - Powered Analysis</h2>
+              <h2>AI-Powered Analysis</h2>
             </div>
             <p>
-              Advanced AI algorithms analyze your symptoms and provide accurate
-              insights. The system interprets user inputs using trained data
-              models to generate reliable health recommendations, helping users
-              better understand their symptoms before consulting a healthcare
-              professional.
+              Advanced AI algorithms analyze your symptoms and provide reliable
+              insights. The system interprets user input using trained models to
+              generate health recommendations before consulting a professional.
             </p>
           </aside>
 
@@ -214,10 +220,9 @@
               <h2>Real-Time Monitoring</h2>
             </div>
             <p>
-              Continuous monitoring ensures timely health updates and alerts. It
-              allows users to track their progress, stay informed about changes,
-              and receive notifications that promote healthier lifestyle
-              decisions and early detection of potential risks.
+              Continuous monitoring ensures timely updates and alerts. Users can
+              track their progress and receive early warnings to promote a
+              healthier lifestyle and detect risks sooner.
             </p>
           </aside>
 
@@ -227,14 +232,13 @@
               <h2>Secure Data Storage</h2>
             </div>
             <p>
-              Your health data is stored securely and is accessible anytime. The
-              system prioritizes user privacy through encrypted databases,
-              ensuring that sensitive medical details remain protected while
-              maintaining accessibility for consistent care and record keeping.
+              Your health data is stored securely with encrypted databases,
+              ensuring privacy while maintaining accessibility for consistent
+              care and record-keeping.
             </p>
           </aside>
 
-          <!-- Back to Home Button -->
+          <!-- Back to Home -->
           <button class="back-to-home" aria-label="Back to top button">
             <i class="fa-solid fa-circle-up"></i>
           </button>
@@ -242,11 +246,12 @@
       </section>
     </main>
 
+    <!-- ==================== Footer ==================== -->
     <footer>
       <p>© 2025 HealthAI. All rights reserved.</p>
     </footer>
 
-    <!-- Linking JavaScript -->
+    <!-- ==================== JavaScript Link ==================== -->
     <script src="../fronted/app.js"></script>
   </body>
 </html>
