@@ -1,6 +1,3 @@
-// ===============================
-// 1. Navigation Menu
-// ===============================
 const menuItems = [
   { name: "Home", href: "#home" },
   { name: "Consultations", href: "#consultations" },
@@ -35,9 +32,7 @@ function initialiseMenu(currentPage) {
 
 initialiseMenu("Home");
 
-// ===============================
 // 2. Animate Disclaimer
-// ===============================
 gsap.from("#health-disclaimer p", { opacity: 0, duration: 5 });
 gsap.to("#health-disclaimer p", {
   color: "#70c5ce",
@@ -47,9 +42,7 @@ gsap.to("#health-disclaimer p", {
   ease: "power1.inOut",
 });
 
-// ===============================
 // 3. Back-to-Top Button
-// ===============================
 const topBtn = document.querySelector(".back-to-home");
 window.addEventListener("scroll", () => {
   if (!topBtn) return;
@@ -58,11 +51,11 @@ window.addEventListener("scroll", () => {
       ? "block"
       : "none";
 });
-topBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
+topBtn?.addEventListener("click", () =>
+  window.scrollTo({ top: 0, behavior: "smooth" })
+);
 
-// ===============================
 // 4. Chat Form Submission (Flask RAG)
-// ===============================
 const form = document.getElementById("symptoms-form");
 const chatInput = document.getElementById("chat-input");
 const infoBox2 = document.getElementById("info-box-2");
@@ -100,16 +93,12 @@ form?.addEventListener("submit", async (e) => {
   chatInput.value = "";
 });
 
-// ===============================
 // 5. Suggestions Buttons
-// ===============================
 document.querySelectorAll("#suggestions button").forEach((btn) => {
   btn.addEventListener("click", () => (chatInput.value = btn.innerText));
 });
 
-// ===============================
 // 6. Download Report
-// ===============================
 document.getElementById("download-report")?.addEventListener("click", () => {
   window.open("http://127.0.0.1:8080/api/download-report", "_blank");
 });
