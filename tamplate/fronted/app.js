@@ -1,5 +1,5 @@
 // ===============================
-// 1. Generate Navigation Menu
+// 1. Navigation Menu
 // ===============================
 const menuItems = [
   { name: "Home", href: "#home" },
@@ -10,32 +10,29 @@ const menuItems = [
 function initialiseMenu(currentPage) {
   const container = document.querySelector("#menu-container");
   if (!container) return;
-  container.innerHTML = "";
 
+  container.innerHTML = "";
   const ul = document.createElement("ul");
   ul.classList.add("menu");
 
   menuItems.forEach((menuItem) => {
     const li = document.createElement("li");
     li.classList.add("menu-item");
-
     if (menuItem.name.toLowerCase() === currentPage.toLowerCase()) {
       li.innerText = menuItem.name;
       li.classList.add("active");
     } else {
       const a = document.createElement("a");
       a.innerText = menuItem.name;
-      a.setAttribute("href", menuItem.href);
+      a.href = menuItem.href;
       li.appendChild(a);
     }
-
     ul.appendChild(li);
   });
 
   container.appendChild(ul);
 }
 
-// Highlight current page
 initialiseMenu("Home");
 
 // ===============================
@@ -55,26 +52,16 @@ gsap.to("#health-disclaimer p", {
 // ===============================
 const topBtn = document.querySelector(".back-to-home");
 window.addEventListener("scroll", () => {
-  if (topBtn) {
-    if (
-      document.body.scrollTop > 20 ||
-      document.documentElement.scrollTop > 20
-    ) {
-      topBtn.style.display = "block";
-    } else {
-      topBtn.style.display = "none";
-    }
-  }
+  if (!topBtn) return;
+  topBtn.style.display =
+    document.body.scrollTop > 20 || document.documentElement.scrollTop > 20
+      ? "block"
+      : "none";
 });
-
-if (topBtn) {
-  topBtn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
-}
+topBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
 // ===============================
-// 4. Chat Form Submission
+// 4. Chat Form Submission (Flask RAG)
 // ===============================
 const form = document.getElementById("symptoms-form");
 const chatInput = document.getElementById("chat-input");
@@ -83,55 +70,46 @@ const infoBox3 = document.getElementById("info-box-3");
 
 form?.addEventListener("submit", async (e) => {
   e.preventDefault();
-
   const userMessage = chatInput.value.trim();
   if (!userMessage) return;
 
-  // Show waiting message
-  if (infoBox2)
-    infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: Processing...</p>`;
-  if (infoBox3) infoBox3.innerHTML = `<p>Recommendations: Processing...</p>`;
+  // Show processing text
+  infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: Processing...</p>`;
+  infoBox3.innerHTML = `<p>Recommendations: Processing...</p>`;
 
   try {
-    // Send message to Flask backend
+    // Call your Flask backend
     const response = await fetch("http://127.0.0.1:8080/api/search", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ msg: userMessage }),
     });
 
-    const data = await response.text(); // Backend returns plain text
-    // Update AI Analysis and Recommendations
-    if (infoBox2)
-      infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: ${data}</p>`;
-    if (infoBox3)
-      infoBox3.innerHTML = `<p>Recommendations:</p><ul><li>${data}</li></ul>`;
+    if (!response.ok) throw new Error("Network response not ok");
+    const data = await response.json();
+
+    // Update frontend with returned data
+    infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: ${data.diagnosis}</p>`;
+    infoBox3.innerHTML = `<p>Recommendations:</p><ul><li>${data.recommendations}</li></ul>`;
   } catch (err) {
     console.error(err);
-    if (infoBox2)
-      infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>Error: Could not connect to server</p>`;
-    if (infoBox3)
-      infoBox3.innerHTML = `<p>Error: Could not fetch recommendations</p>`;
+    infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>Error: Could not connect to server</p>`;
+    infoBox3.innerHTML = `<p>Error: Could not fetch recommendations</p>`;
   }
 
-  chatInput.value = ""; // Clear input
+  chatInput.value = "";
 });
 
 // ===============================
 // 5. Suggestions Buttons
 // ===============================
-const suggestionButtons = document.querySelectorAll("#suggestions button");
-suggestionButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
-    chatInput.value = btn.innerText;
-  });
+document.querySelectorAll("#suggestions button").forEach((btn) => {
+  btn.addEventListener("click", () => (chatInput.value = btn.innerText));
 });
 
 // ===============================
-// 6. Download Report Button
+// 6. Download Report
 // ===============================
-const downloadBtn = document.getElementById("download-report");
-downloadBtn?.addEventListener("click", () => {
-  // Trigger backend report generation (Flask endpoint should handle this)
+document.getElementById("download-report")?.addEventListener("click", () => {
   window.open("http://127.0.0.1:8080/api/download-report", "_blank");
 });
