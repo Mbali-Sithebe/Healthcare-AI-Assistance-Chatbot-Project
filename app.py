@@ -1,44 +1,36 @@
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 from src.pipeline import ask_question
 
-# Initialize Flask app
 app = Flask(__name__)
-CORS(app)  # Allow frontend (port 5500) to connect to backend (port 8080)
+CORS(app)
 
-# Route for home page (can stay even if frontend runs separately)
-@app.route("/")
-def index():
-    return "<p>Hello, World!</p>"
-
-# Route for receiving chat messages from frontend
 @app.route("/get", methods=["POST"])
-def chat(jsdata):
-    msg = request.form["msg"]
-    print(f"Received from frontend: {msg}")  # Debugging line to confirm connection
+def chat():
+    data = request.get_json()
+    msg = data.get("msg", "")
+    if not msg:
+        return jsonify({"diagnosis": "", "medicine": ""})
 
-    answer = ask_question(msg)
-    print(f"Response sent back: {answer}")  # Debugging line to confirm response
+    # Step 1: Ask diagnosis
+    diagnosis_query = f"My symptoms are: {msg}. What could be the possible cause or condition?"
+    diagnosis_response = ask_question(diagnosis_query)
+    if isinstance(diagnosis_response, dict):
+        diagnosis = diagnosis_response.get("answer") or diagnosis_response.get("output") or diagnosis_response.get("text")
+    else:
+        diagnosis = str(diagnosis_response)
 
-    return answer
+    # Step 2: Ask medicine recommendation
+    medicine_query = f"Given that the diagnosis is: {diagnosis}, what possible medications or treatments are recommended?"
+    medicine_response = ask_question(medicine_query)
+    if isinstance(medicine_response, dict):
+        medicine = medicine_response.get("answer") or medicine_response.get("output") or medicine_response.get("text")
+    else:
+        medicine = str(medicine_response)
 
-# Route for receiving chat messages from frontend
-@app.route("/api/search", methods=["GET", "POST"])
-def chatt():
-    print(request.json)
-    # if request.method == 'POST':
-        
-        # text = request.get_json().get("Message")
-        # back = {"answer": text+"hi"}
-    # msg = request.form["msg"]
-    # print(f"Received from frontend: {msg}")  # Debugging line to confirm connection
+    # Return both in JSON
+    return jsonify({"diagnosis": diagnosis, "medicine": medicine})
 
-    # answer = ask_question(msg)
-    # print(f"Response sent back: {answer}")  # Debugging line to confirm response
-
-    return 'jsonify(backk)'
-
-# Run the Flask server
 if __name__ == "__main__":
     app.run(host="127.0.0.1", port=8080, debug=True)
 

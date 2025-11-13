@@ -9,6 +9,7 @@ const menuItems = [
 
 function initialiseMenu(currentPage) {
   const container = document.querySelector("#menu-container");
+  if (!container) return;
   container.innerHTML = "";
 
   const ul = document.createElement("ul");
@@ -34,11 +35,11 @@ function initialiseMenu(currentPage) {
   container.appendChild(ul);
 }
 
-// Call function to highlight current page
+// Highlight current page
 initialiseMenu("Home");
 
 // ===============================
-// 2. Animate Warning Header
+// 2. Animate Disclaimer
 // ===============================
 gsap.from("#health-disclaimer p", { opacity: 0, duration: 5 });
 gsap.to("#health-disclaimer p", {
@@ -52,46 +53,25 @@ gsap.to("#health-disclaimer p", {
 // ===============================
 // 3. Back-to-Top Button
 // ===============================
-let topBtn = document.querySelector(".back-to-home");
-
+const topBtn = document.querySelector(".back-to-home");
 window.addEventListener("scroll", () => {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    topBtn.style.display = "block";
-  } else {
-    topBtn.style.display = "none";
+  if (topBtn) {
+    if (
+      document.body.scrollTop > 20 ||
+      document.documentElement.scrollTop > 20
+    ) {
+      topBtn.style.display = "block";
+    } else {
+      topBtn.style.display = "none";
+    }
   }
 });
 
-topBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
+if (topBtn) {
+  topBtn.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
   });
-});
-
-// ==================== Submit Symptoms ==================== //
-// form.addEventListener("submit", (event) => {
-//   console.log("Submit clicked", symptoms);
-//   event.preventDefault(); // Prevent page reload
-
-//   const symptoms = chatInput.value.trim();
-
-//   if (symptoms) {
-//     console.log("Symptoms submitted:", symptoms);
-//     alert("Your symptoms have been submitted for analysis!");
-//     // Later: connect to backend with fetch() or axios
-//   } else {
-//     alert("Please describe your symptoms before submitting.");
-//   }
-// });
-
-// downloadBtn.addEventListener("click", () => {
-//   // Replace this URL with your backend endpoint
-//   const pdfDownloadURL = "http://localhost:5000/api/download-report";
-
-//   // Trigger the backend file download directly
-//   window.location.href = pdfDownloadURL;
-// });
+}
 
 // ===============================
 // 4. Chat Form Submission
@@ -99,60 +79,59 @@ topBtn.addEventListener("click", () => {
 const form = document.getElementById("symptoms-form");
 const chatInput = document.getElementById("chat-input");
 const infoBox2 = document.getElementById("info-box-2");
+const infoBox3 = document.getElementById("info-box-3");
 
-form.addEventListener("submit", async (e) => {
-  console.log("Submit clicked", symptoms);
-  e.preventDefault(); // Prevent page reload
+form?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
   const userMessage = chatInput.value.trim();
-  //if (!userMessage) return;
-  console.log("Submit here", symptoms);
-  // Show user message while waiting for response
-  infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: Processing...</p>`;
-  console.log("try startt", symptoms);
-  try {
-    console.log("try start", symptoms);
-    //Send message to Flask backend
-    const response = await fetch("http://127.0.0.1:5000/api/search", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ Message: "userMessage" }), //`msg=${encodeURIComponent(userMessage)}`,
-    });
-    // const response = await fetch("http://127.0.0.1:5000/", {
-    //   method: "GET",
-    //   headers: {
-    //     "Content-Type": "application/x-www-form-urlencoded",
-    //   },
-    // });
+  if (!userMessage) return;
 
-    const answer = await response.text();
-    console.log("try end", answer);
-    infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: ${answer}</p>`;
-  } catch (error) {
-    infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>Error: Could not connect to server</p>`;
-    console.error(error);
+  // Show waiting message
+  if (infoBox2)
+    infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: Processing...</p>`;
+  if (infoBox3) infoBox3.innerHTML = `<p>Recommendations: Processing...</p>`;
+
+  try {
+    // Send message to Flask backend
+    const response = await fetch("http://127.0.0.1:8080/api/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ msg: userMessage }),
+    });
+
+    const data = await response.text(); // Backend returns plain text
+    // Update AI Analysis and Recommendations
+    if (infoBox2)
+      infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>AI: ${data}</p>`;
+    if (infoBox3)
+      infoBox3.innerHTML = `<p>Recommendations:</p><ul><li>${data}</li></ul>`;
+  } catch (err) {
+    console.error(err);
+    if (infoBox2)
+      infoBox2.innerHTML = `<p>You: ${userMessage}</p><p>Error: Could not connect to server</p>`;
+    if (infoBox3)
+      infoBox3.innerHTML = `<p>Error: Could not fetch recommendations</p>`;
   }
 
   chatInput.value = ""; // Clear input
 });
 
 // ===============================
-// 5. Placeholder for Suggestions Buttons
+// 5. Suggestions Buttons
 // ===============================
 const suggestionButtons = document.querySelectorAll("#suggestions button");
 suggestionButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    // Keep non-functional for now
     chatInput.value = btn.innerText;
   });
 });
 
 // ===============================
-// 6. Placeholder for Download Report Button
+// 6. Download Report Button
 // ===============================
-const downloadBtn = document.querySelector("#downloadBtn button");
-downloadBtn.addEventListener("click", () => {
-  // Download feature not implemented yet
-  alert("Download feature will be implemented here.");
+const downloadBtn = document.getElementById("download-report");
+downloadBtn?.addEventListener("click", () => {
+  // Trigger backend report generation (Flask endpoint should handle this)
+  window.open("http://127.0.0.1:8080/api/download-report", "_blank");
 });
